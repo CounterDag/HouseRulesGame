@@ -1,0 +1,174 @@
+[gd_scene load_steps=18 format=3 uid="uid://dk3nf84qv3jgx"]
+
+[ext_resource type="Material" uid="uid://dj8hvigdygfd1" path="res://materials/TestDarkPiece.tres" id="2_0s8kb"]
+[ext_resource type="PackedScene" uid="uid://dsber1f6v0a63" path="res://Pieces/chess_king.tscn" id="2_n34en"]
+[ext_resource type="PackedScene" uid="uid://5hcn71i3bi46" path="res://Pieces/chess_bishop.tscn" id="2_qpvvg"]
+[ext_resource type="PackedScene" uid="uid://cqv6jo1xb375u" path="res://Pieces/PlayerCamera.tscn" id="3_imf02"]
+[ext_resource type="PackedScene" uid="uid://cvhtfkdbusaa6" path="res://Pieces/chess_knight.tscn" id="3_u56u2"]
+[ext_resource type="Material" uid="uid://drknw26duog4c" path="res://materials/TestRedTeam.tres" id="3_w3jce"]
+[ext_resource type="PackedScene" uid="uid://bbtr0wxot778g" path="res://Pieces/chess_queen.tscn" id="4_gsmxc"]
+[ext_resource type="PackedScene" uid="uid://b0qcwl1ymldq0" path="res://Pieces/chess_rook.tscn" id="5_31xx7"]
+[ext_resource type="PackedScene" uid="uid://batdu5k1fdmep" path="res://Pieces/chess_pawn.tscn" id="6_cg3uv"]
+[ext_resource type="PackedScene" uid="uid://55y6ugjot62q" path="res://Boards/tile.tscn" id="8_nqwmk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e4tq2"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_0anhu"]
+sky_material = SubResource("ProceduralSkyMaterial_e4tq2")
+
+[sub_resource type="Environment" id="Environment_3i7n8"]
+background_mode = 2
+sky = SubResource("Sky_0anhu")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jlolm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ia6k"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qcchy"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we3pb"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Board" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3i7n8")
+
+[node name="PiecesP1" type="Node3D" parent="."]
+
+[node name="ChessKing" parent="PiecesP1" instance=ExtResource("2_n34en")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 3, 0.1, -7)
+visible = false
+
+[node name="ChessKingBody" parent="PiecesP1/ChessKing" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jlolm")
+
+[node name="ChessKingEyes" parent="PiecesP1/ChessKing" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6ia6k")
+
+[node name="MonarchBase" parent="PiecesP1/ChessKing/MonarchBase" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcchy")
+
+[node name="PiecesP2" type="Node3D" parent="."]
+
+[node name="ChessKing" parent="PiecesP2" instance=ExtResource("2_n34en")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 14, 0.1, 0)
+
+[node name="ChessKingBody" parent="PiecesP2/ChessKing" index="0"]
+surface_material_override/0 = ExtResource("2_0s8kb")
+
+[node name="ChessKingEyes" parent="PiecesP2/ChessKing" index="1"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="MonarchBase" parent="PiecesP2/ChessKing/MonarchBase" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_we3pb")
+
+[node name="ChessBishop" parent="PiecesP2" instance=ExtResource("2_qpvvg")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 10, 0, 0)
+
+[node name="ChessPawnBody" parent="PiecesP2/ChessBishop" index="0"]
+surface_material_override/0 = ExtResource("2_0s8kb")
+
+[node name="ChessPawnEyes" parent="PiecesP2/ChessBishop" index="1"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="PieceBase" parent="PiecesP2/ChessBishop/PieceBase2" index="0"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="ChessKnight" parent="PiecesP2" instance=ExtResource("3_u56u2")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 8, 0, 0)
+
+[node name="ChessPawnBody" parent="PiecesP2/ChessKnight" index="0"]
+surface_material_override/0 = ExtResource("2_0s8kb")
+
+[node name="ChessPawnEyes" parent="PiecesP2/ChessKnight" index="1"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="PieceBase" parent="PiecesP2/ChessKnight/PieceBase2" index="0"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="ChessQueen" parent="PiecesP2" instance=ExtResource("4_gsmxc")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 12, 0, 0)
+
+[node name="ChessKingBody" parent="PiecesP2/ChessQueen" index="0"]
+surface_material_override/0 = ExtResource("2_0s8kb")
+
+[node name="ChessKingEyes" parent="PiecesP2/ChessQueen" index="1"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="PieceBase" parent="PiecesP2/ChessQueen/PieceBase2" index="0"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="ChessRook" parent="PiecesP2" instance=ExtResource("5_31xx7")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 6, 0, 0)
+
+[node name="ChessPawnBody_001" parent="PiecesP2/ChessRook" index="0"]
+surface_material_override/0 = ExtResource("2_0s8kb")
+
+[node name="ChessPawnEyes_001" parent="PiecesP2/ChessRook" index="1"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="ChessPawnBody_002" parent="PiecesP2/ChessRook" index="2"]
+surface_material_override/0 = ExtResource("2_0s8kb")
+
+[node name="PieceBase" parent="PiecesP2/ChessRook/PieceBase2" index="0"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="ChessPawn" parent="PiecesP2" instance=ExtResource("6_cg3uv")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 4, 0, 0)
+
+[node name="ChessPawnBody" parent="PiecesP2/ChessPawn" index="0"]
+surface_material_override/0 = ExtResource("2_0s8kb")
+
+[node name="ChessPawnEyes" parent="PiecesP2/ChessPawn" index="1"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="PieceBase" parent="PiecesP2/ChessPawn/PieceBase" index="0"]
+surface_material_override/0 = ExtResource("3_w3jce")
+
+[node name="Node3D" parent="." instance=ExtResource("3_imf02")]
+
+[node name="Spaces" type="Node3D" parent="."]
+
+[node name="Tile" parent="Spaces" instance=ExtResource("8_nqwmk")]
+
+[node name="Tile2" parent="Spaces" instance=ExtResource("8_nqwmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Tile3" parent="Spaces" instance=ExtResource("8_nqwmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Tile4" parent="Spaces" instance=ExtResource("8_nqwmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="Tile5" parent="Spaces" instance=ExtResource("8_nqwmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Tile6" parent="Spaces" instance=ExtResource("8_nqwmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="Tile7" parent="Spaces" instance=ExtResource("8_nqwmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="Tile8" parent="Spaces" instance=ExtResource("8_nqwmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+
+[editable path="PiecesP1/ChessKing"]
+[editable path="PiecesP1/ChessKing/MonarchBase"]
+[editable path="PiecesP2/ChessKing"]
+[editable path="PiecesP2/ChessKing/MonarchBase"]
+[editable path="PiecesP2/ChessBishop"]
+[editable path="PiecesP2/ChessBishop/PieceBase2"]
+[editable path="PiecesP2/ChessKnight"]
+[editable path="PiecesP2/ChessKnight/PieceBase2"]
+[editable path="PiecesP2/ChessQueen"]
+[editable path="PiecesP2/ChessQueen/PieceBase2"]
+[editable path="PiecesP2/ChessRook"]
+[editable path="PiecesP2/ChessRook/PieceBase2"]
+[editable path="PiecesP2/ChessPawn"]
+[editable path="PiecesP2/ChessPawn/PieceBase"]
