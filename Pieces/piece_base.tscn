@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjwaekcmkn7id"]
-
-[ext_resource type="PackedScene" uid="uid://bo2c6qxpfwjc8" path="res://3dModels/PieceBase.blend" id="1_cglnw"]
-
-[node name="PieceBase" instance=ExtResource("1_cglnw")]
