@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwxvlwmrba5wt"]
+
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_bosyk"]
+[ext_resource type="Script" path="res://Scripts/input_manager.gd" id="2_0e225"]
+[ext_resource type="PackedScene" uid="uid://csif1xpdtbpro" path="res://scenes/boards/board.tscn" id="3_kkmh2"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_bosyk")
+
+[node name="TurnTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 30.0
+
+[node name="InputManager" type="Node" parent="."]
+script = ExtResource("2_0e225")
+
+[node name="Board" parent="." instance=ExtResource("3_kkmh2")]
+
+[node name="GameUI" type="CanvasLayer" parent="."]

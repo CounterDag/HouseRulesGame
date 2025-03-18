@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://csif1xpdtbpro"]
+
+[ext_resource type="Script" path="res://Scripts/board.gd" id="1_mb834"]
+[ext_resource type="PackedScene" uid="uid://55y6ugjot62q" path="res://scenes/boards/tile.tscn" id="2_wfoxc"]
+[ext_resource type="Material" uid="uid://c5vmgdae0feoi" path="res://materials/light.tres" id="3_ki4n3"]
+[ext_resource type="Material" uid="uid://bsl1mc58brscs" path="res://materials/dark.tres" id="4_r2ao8"]
+[ext_resource type="PackedScene" uid="uid://cqv6jo1xb375u" path="res://scenes/core/PlayerCamera.tscn" id="5_gf6fx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_65bvb"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ff0p1"]
+sky_material = SubResource("ProceduralSkyMaterial_65bvb")
+
+[sub_resource type="Environment" id="Environment_cxm1j"]
+background_mode = 2
+sky = SubResource("Sky_ff0p1")
+tonemap_mode = 2
+
+[node name="Board" type="Node3D"]
+script = ExtResource("1_mb834")
+tile_scene = ExtResource("2_wfoxc")
+light_tile_material = ExtResource("3_ki4n3")
+dark_tile_material = ExtResource("4_r2ao8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cxm1j")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("5_gf6fx")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 7, 8, 17)
+
+[node name="tile" type="Node3D" parent="."]
+
+[node name="Pieces" type="Node3D" parent="."]

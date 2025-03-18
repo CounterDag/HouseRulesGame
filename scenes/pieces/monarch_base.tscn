@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://biw7t6ggham35"]
+
+[ext_resource type="PackedScene" uid="uid://bc7bmvn7e2grn" path="res://3dModels/MonarchBase.blend" id="1_y4iuh"]
+
+[node name="MonarchBase" instance=ExtResource("1_y4iuh")]
+
+[node name="Marker3D" type="Marker3D" parent="." index="1"]

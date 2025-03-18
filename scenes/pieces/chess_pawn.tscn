@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://batdu5k1fdmep"]
+
+[ext_resource type="PackedScene" uid="uid://waude4n0qy5j" path="res://3dModels/ChessPawn.blend" id="1_d0auh"]
+[ext_resource type="PackedScene" uid="uid://bjwaekcmkn7id" path="res://scenes/pieces/piece_base.tscn" id="2_186qg"]
+[ext_resource type="Script" path="res://Scripts/chess_pawn.gd" id="2_yi0ol"]
+
+[node name="ChessPawn" instance=ExtResource("1_d0auh")]
+script = ExtResource("2_yi0ol")
+
+[node name="PieceBase" parent="." index="2" instance=ExtResource("2_186qg")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[editable path="PieceBase"]
